@@ -65,37 +65,20 @@ The backend was tested using both browser-based HTML form submissions and tools 
 A simple HTML page (form.html) was created to allow user interaction with the API. Users can input values for all 13 model features, and upon submission, a JavaScript handler sends the data to the Flask API. The returned prediction is then displayed on the same page.
 
 
-📁 Project Structure:
+📁 Project Structure
 
 📁 heart-disease-prediction
 
-├── heart.csv                  # 
+├── heart.csv                  # Dataset
+├── retrain_model.py          # Script to preprocess data and train model
+├── app.py                    # Flask application
+├── heart_model.pkl           # Trained RandomForest model
+├── scaler.pkl                # Fitted StandardScaler
+├── form.html                 # HTML frontend for user input
+└── README.md                 # Project documentation
 
-Dataset
 
-├── train_model.py          # Script 
 
-to preprocess data and train model
-
-├── app.py                    # Flask 
-
-application
-
-├── heart_model.pkl           # 
-
-Trained RandomForest model
-
-├── scaler.pkl                # 
-
-Fitted StandardScaler
-
-├── form.html                 # HTML 
-
-frontend for user input
-
-└── README.md                 # 
-
-Project documentation
 
 ⚙️ Requirements:
 includes:
