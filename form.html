@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+</head>
+<body>
+    <h2>Heart Disease Prediction Form</h2>
+    <form id="predictForm">
+        <label>Age: <input type="number" name="age" required></label><br><br>
+        <label>Sex (0=female, 1=male): <input type="number" name="sex" required></label><br><br>
+        <label>Chest Pain Type (0-3): <input type="number" name="cp" required></label><br><br>
+        <label>Resting BP: <input type="number" name="trestbps" required></label><br><br>
+        <label>Cholesterol: <input type="number" name="chol" required></label><br><br>
+        <label>Fasting BS (0/1): <input type="number" name="fbs" required></label><br><br>
+        <label>Resting ECG (0-2): <input type="number" name="restecg" required></label><br><br>
+        <label>Max HR: <input type="number" name="thalach" required></label><br><br>
+        <label>Exercise Angina (0/1): <input type="number" name="exang" required></label><br><br>
+        <label>Oldpeak: <input type="number" step="any" name="oldpeak" required></label><br><br>
+        <label>Slope (0-2): <input type="number" name="slope" required></label><br><br>
+        <label>CA (0-4): <input type="number" name="ca" required></label><br><br>
+        <label>Thal (1 = fixed defect, 2 = normal, 3 = reversible defect): <input type="number" name="thal" required></label><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        document.getElementById("predictForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = Number(value);
+            });
+
+            console.log("Sending data:", jsonData);
+
+            const response = await fetch("http://127.0.0.1:8000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(jsonData)
+            });
+
+            const result = await response.json();
+            console.log("Response:", result);
+
+            if (result.prediction !== undefined) {
+                document.getElementById("result").innerText =
+                    result.prediction === 1
+                        ? "High risk of Heart Disease"
+                        : "Low risk of Heart Disease";
+            } else {
+                document.getElementById("result").innerText = "❌ Prediction failed: " + result.error;
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
