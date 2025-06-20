@@ -70,11 +70,17 @@ A simple HTML page (form.html) was created to allow user interaction with the AP
 📁 heart-disease-prediction
 
 ├── heart.csv                  # Dataset
+
 ├── retrain_model.py          # Script to preprocess data and train model
+
 ├── app.py                    # Flask application
+
 ├── heart_model.pkl           # Trained RandomForest model
+
 ├── scaler.pkl                # Fitted StandardScaler
+
 ├── form.html                 # HTML frontend for user input
+
 └── README.md                 # Project documentation
 
 
